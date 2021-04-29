@@ -16,15 +16,15 @@ pipeline {
                 sh './mvnw clean package'
             }
         }
-        post {
-            // 'success' for on success or 'failure' for on failure
-            // 'fixed' (previous failed, current succeeded)
-            // 'regression' (current worse than last)
-            // 'changed' (combines both 'fixed' and 'regression')
-            always {
-                junit '**/target/surefire-reports/TEST-*.xml'
-                archiveArtifacts 'target/*.jar'
-            }
+    }
+    post {
+        // 'success' for on success or 'failure' for on failure
+        // 'fixed' (previous failed, current succeeded)
+        // 'regression' (current worse than last)
+        // 'changed' (combines both 'fixed' and 'regression')
+        always {
+            junit '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts 'target/*.jar'
         }
     }
 }
